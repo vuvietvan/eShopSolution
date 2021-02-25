@@ -112,7 +112,7 @@ namespace eShopSolution.Data.Extensions
                 Dob = new DateTime(2021, 02, 25)
             });
 
-            modelBuilder.Entity<Microsoft.AspNet.Identity.EntityFramework.IdentityUserRole<Guid>>().HasData(new IdentityUserRole<Guid>
+            modelBuilder.Entity<IdentityUserRole<Guid>>().HasData(new IdentityUserRole<Guid>
             {
                 RoleId = roleId,
                 UserId = adminId
