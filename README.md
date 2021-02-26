@@ -7,9 +7,9 @@
 
 ## Install Packages
 
-Microsoft.EntityFrameworkCore.SqlServer
-Microsoft.EntityFrameworkCore.Tools
-Microsoft.EntityFrameworkCore.Design
+- Microsoft.EntityFrameworkCore.SqlServer
+- Microsoft.EntityFrameworkCore.Tools
+- Microsoft.EntityFrameworkCore.Design
 
 ## Youtube tutorial
 
