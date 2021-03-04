@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using eShopSolution.Application.Catalog.Products;
 using eShopSolution.Application.Common;
+using eShopSolution.Application.System.Roles;
 using eShopSolution.Application.System.Users;
 using eShopSolution.Data.EF;
 using eShopSolution.Data.Entities;
@@ -41,18 +42,18 @@ namespace eShopSolution.BackendAPI
                 options.UseSqlServer(Configuration.GetConnectionString(SystemConstants.MainConnectionString)));
 
             services.AddIdentity<AppUser, AppRole>()
-               .AddEntityFrameworkStores<EShopDbContext>()
-               .AddDefaultTokenProviders();
-            //Declare DI
+                .AddEntityFrameworkStores<EShopDbContext>()
+                .AddDefaultTokenProviders();
 
+            //Declare DI
             services.AddTransient<IStorageService, FileStorageService>();
 
             services.AddTransient<IProductService, ProductService>();
-            
             services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
             services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
             services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IRoleService, RoleService>();
 
             //services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();
             //services.AddTransient<IValidator<RegisterRequest>, RegisterRequestValidator>();
@@ -138,7 +139,6 @@ namespace eShopSolution.BackendAPI
             app.UseStaticFiles();
 
             app.UseAuthentication();
-
             app.UseRouting();
 
             app.UseAuthorization();

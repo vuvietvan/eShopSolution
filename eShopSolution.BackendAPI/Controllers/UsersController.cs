@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using eShopSolution.Application.System.Roles;
 using eShopSolution.Application.System.Users;
+using eShopSolution.Data.Entities;
 using eShopSolution.ViewModels.System.Users;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace eShopSolution.BackendAPI.Controllers
 {
@@ -62,6 +65,20 @@ namespace eShopSolution.BackendAPI.Controllers
                 return BadRequest(ModelState);
 
             var result = await _userService.Update(id, request);
+            if (!result.IsSuccessed)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
+
+        [HttpPut("{id}/roles")]
+        public async Task<IActionResult> RoleAssign(Guid id, [FromBody]RoleAssignRequest request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await _userService.RoleAssign(id, request);
             if (!result.IsSuccessed)
             {
                 return BadRequest(result);
