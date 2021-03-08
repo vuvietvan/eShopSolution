@@ -133,6 +133,10 @@
     <value>Sản phẩm nổi bật</value>
     <comment>/Home/Index</comment>
   </data>
+  <data name="Lastest Products" xml:space="preserve">
+    <value>Sản phẩm mới nhất</value>
+    <comment>/Home/Index</comment>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Đăng nhập</value>
     <comment>Layouts</comment>
@@ -144,5 +148,9 @@
   <data name="Vietnamese" xml:space="preserve">
     <value>Tiếng Việt</value>
     <comment>Layouts</comment>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>Xem</value>
+    <comment>/Home/Index</comment>
   </data>
 </root>

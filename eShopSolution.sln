@@ -26,7 +26,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Domain", "2.Domain", "{E1
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.Hosts", "3.Hosts", "{D8D90485-E23A-4B0D-A284-E977F4A62A60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopSolution.AdminApp", "eShopSolution.AdminApp\eShopSolution.AdminApp.csproj", "{1FA3F7A1-3ECC-43DA-9552-9303F819DBAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopSolution.AdminApp", "eShopSolution.AdminApp\eShopSolution.AdminApp.csproj", "{1FA3F7A1-3ECC-43DA-9552-9303F819DBAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopSolution.ApiIntegration", "eShopSolution.ApiIntegration\eShopSolution.ApiIntegration.csproj", "{E63C4514-5F5B-4434-A9C2-EE2E8F190DD7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,6 +64,10 @@ Global
 		{1FA3F7A1-3ECC-43DA-9552-9303F819DBAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FA3F7A1-3ECC-43DA-9552-9303F819DBAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FA3F7A1-3ECC-43DA-9552-9303F819DBAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E63C4514-5F5B-4434-A9C2-EE2E8F190DD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E63C4514-5F5B-4434-A9C2-EE2E8F190DD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E63C4514-5F5B-4434-A9C2-EE2E8F190DD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E63C4514-5F5B-4434-A9C2-EE2E8F190DD7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +80,7 @@ Global
 		{DAF535D1-C2B3-496C-87AA-1CFB9A921C97} = {74947ABA-0998-4E35-AC37-A5897A665DCA}
 		{3C1AB0AE-7B24-45C2-917F-E677C9F0FEC7} = {D8D90485-E23A-4B0D-A284-E977F4A62A60}
 		{1FA3F7A1-3ECC-43DA-9552-9303F819DBAB} = {D8D90485-E23A-4B0D-A284-E977F4A62A60}
+		{E63C4514-5F5B-4434-A9C2-EE2E8F190DD7} = {D8D90485-E23A-4B0D-A284-E977F4A62A60}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C44D50EA-16D6-4E7F-A47B-F4056E36C94B}

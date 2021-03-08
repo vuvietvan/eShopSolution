@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using eShopSolution.Application.Catalog.Products;
+﻿using eShopSolution.Application.Catalog.Products;
 using eShopSolution.ViewModels.Catalog.ProductImages;
 using eShopSolution.ViewModels.Catalog.Products;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
-namespace eShopSolution.BackendAPI.Controllers
+namespace eShopSolution.BackendApi.Controllers
 {
+    //api/products
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
@@ -38,6 +35,14 @@ namespace eShopSolution.BackendAPI.Controllers
             if (product == null)
                 return BadRequest("Cannot find product");
             return Ok(product);
+        }
+
+        [HttpGet("featured/{languageId}/{take}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetFeaturedProducts(int take, string languageId)
+        {
+            var products = await _productService.GetFeaturedProducts(languageId, take);
+            return Ok(products);
         }
 
         [HttpPost]

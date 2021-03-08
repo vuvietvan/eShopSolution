@@ -133,6 +133,10 @@
     <value>Featured Products</value>
     <comment>/Home/Index</comment>
   </data>
+  <data name="Lastest Products" xml:space="preserve">
+    <value>Lastest Products</value>
+    <comment>/Home/Index</comment>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
     <comment>Layouts</comment>
@@ -144,5 +148,9 @@
   <data name="Vietnamese" xml:space="preserve">
     <value>Vietnamese</value>
     <comment>Layouts</comment>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>View</value>
+    <comment>/Home/Index</comment>
   </data>
 </root>
