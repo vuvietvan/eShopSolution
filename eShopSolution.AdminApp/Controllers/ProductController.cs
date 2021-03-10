@@ -191,5 +191,13 @@ namespace eShopSolution.AdminApp.Controllers
             ModelState.AddModelError("", "Xóa không thành công");
             return View(request);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            var languageId = HttpContext.Session.GetString(SystemConstants.AppSettings.DefaultLanguageId);
+            var result = await _productApiClient.GetById(id, languageId);
+            return View(result);
+        }
     }
 }
