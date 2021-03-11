@@ -160,7 +160,7 @@ namespace eShopSolution.Application.System.Users
             {
                 return new ApiSuccessResult<bool>();
             }
-            return new ApiErrorResult<bool>("Đăng ký không thành công");
+            return new ApiErrorResult<bool>("Đăng ký không thành công. Vì User và Password giống nhau");
         }
 
         public async Task<ApiResult<bool>> RoleAssign(Guid id, RoleAssignRequest request)
@@ -196,7 +196,7 @@ namespace eShopSolution.Application.System.Users
         {
             if (await _userManager.Users.AnyAsync(x => x.Email == request.Email && x.Id != id))
             {
-                return new ApiErrorResult<bool>("Emai đã tồn tại");
+                return new ApiErrorResult<bool>("Emai đã tồn tại !");
             }
             var user = await _userManager.FindByIdAsync(id.ToString());
             user.Dob = request.Dob;
@@ -210,7 +210,7 @@ namespace eShopSolution.Application.System.Users
             {
                 return new ApiSuccessResult<bool>();
             }
-            return new ApiErrorResult<bool>("Cập nhật không thành công");
+            return new ApiErrorResult<bool>("Cập nhật không thành công !");
         }
     }
 }
