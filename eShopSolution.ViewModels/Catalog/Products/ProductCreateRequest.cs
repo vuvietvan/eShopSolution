@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
+using eShopSolution.ViewModels.Common;
 
 namespace eShopSolution.ViewModels.Catalog.Products
 {
@@ -23,8 +24,8 @@ namespace eShopSolution.ViewModels.Catalog.Products
         public string LanguageId { set; get; }
 
         public bool? IsFeatured { get; set; }
-        public IFormFile ThumbnailImage { get; set; }
 
+        public IFormFile ThumbnailImage { get; set; }
 
     }
 }
