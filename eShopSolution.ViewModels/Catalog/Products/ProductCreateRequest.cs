@@ -26,6 +26,6 @@ namespace eShopSolution.ViewModels.Catalog.Products
         public bool? IsFeatured { get; set; }
 
         public IFormFile ThumbnailImage { get; set; }
-
+        public List<SelectItem> Categories { get; set; } = new List<SelectItem>();
     }
 }

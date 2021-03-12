@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using eShopSolution.ViewModels.Common;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,6 +21,8 @@ namespace eShopSolution.ViewModels.Catalog.Products
         public bool? IsFeatured { get; set; }
 
         public IFormFile ThumbnailImage { get; set; }
+
+        public List<SelectItem> Categories { get; set; } = new List<SelectItem>();
 
     }
 }
