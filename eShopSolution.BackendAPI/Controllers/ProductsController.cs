@@ -66,12 +66,13 @@ namespace eShopSolution.BackendAPI.Controllers
                 return BadRequest(ModelState);
             }
             var productId = await _productService.Create(request);
+
             if (productId == 0)
                 return BadRequest();
 
             var product = await _productService.GetById(productId, request.LanguageId);
 
-            return CreatedAtAction(nameof(GetById), new { id = productId }, product);
+            return Ok(productId);//CreatedAtAction(nameof(GetById), new { id = productId }, product);
         }
 
         [HttpPut("{productId}")]
