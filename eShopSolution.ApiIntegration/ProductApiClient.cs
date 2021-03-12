@@ -31,7 +31,7 @@ namespace eShopSolution.ApiIntegration
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<bool> CreateProduct(ProductCreateRequest request)
+        public async Task<int> CreateProduct(ProductCreateRequest request)
         {
             var sessions = _httpContextAccessor
                 .HttpContext
@@ -70,10 +70,18 @@ namespace eShopSolution.ApiIntegration
             requestContent.Add(new StringContent(languageId), "languageId");
 
             var response = await client.PostAsync($"/api/products/", requestContent);
-            return response.IsSuccessStatusCode;
+
+            if(response.IsSuccessStatusCode)
+            {
+                int productId = 0;
+                var productResponse = response.Content.ReadAsStringAsync().Result;
+                int.TryParse(productResponse, out productId);
+                return productId;
+            }
+            return 0;
         }
 
-        public async Task<bool> UpdateProduct(ProductUpdateRequest request)
+        public async Task<int> UpdateProduct(ProductUpdateRequest request)
         {
             var sessions = _httpContextAccessor
                 .HttpContext
@@ -111,7 +119,17 @@ namespace eShopSolution.ApiIntegration
             requestContent.Add(new StringContent(languageId), "languageId");
 
             var response = await client.PutAsync($"/api/products/" + request.Id, requestContent);
-            return response.IsSuccessStatusCode;
+
+            if (response.IsSuccessStatusCode)
+            {
+                int productId = 0;
+                var productResponse = response.Content.ReadAsStringAsync().Result;
+                int.TryParse(productResponse, out productId);
+                return productId;
+            }
+            return 0;
+
+            // return response.IsSuccessStatusCode ;
         }
 
         public async Task<PagedResult<ProductVm>> GetPagings(GetManageProductPagingRequest request)

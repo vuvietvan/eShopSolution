@@ -60,9 +60,10 @@ namespace eShopSolution.AdminApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var roleAssignRequest = await GetCategoryAssignRequest(0);
+            return View(new ProductCreateRequest { Categories = roleAssignRequest.Categories});
         }
 
         [HttpPost]
@@ -73,8 +74,9 @@ namespace eShopSolution.AdminApp.Controllers
                 return View(request);
 
             var result = await _productApiClient.CreateProduct(request);
-            if (result)
+            if (result > 0)
             {
+                await _productApiClient.CategoryAssign(result, new CategoryAssignRequest {Id = result, Categories = request.Categories });
                 TempData["result"] = "Thêm mới sản phẩm thành công";
                 return RedirectToAction("Index");
             }
@@ -113,6 +115,8 @@ namespace eShopSolution.AdminApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
+            var roleAssignRequest = await GetCategoryAssignRequest(id);
+            
             var languageId = HttpContext.Session.GetString(SystemConstants.AppSettings.DefaultLanguageId);
 
             var product = await _productApiClient.GetById(id, languageId);
@@ -124,7 +128,8 @@ namespace eShopSolution.AdminApp.Controllers
                 Name = product.Name,
                 SeoAlias = product.SeoAlias,
                 SeoDescription = product.SeoDescription,
-                SeoTitle = product.SeoTitle
+                SeoTitle = product.SeoTitle,
+                Categories = roleAssignRequest.Categories
             };
             return View(editVm);
         }
@@ -137,8 +142,10 @@ namespace eShopSolution.AdminApp.Controllers
                 return View(request);
 
             var result = await _productApiClient.UpdateProduct(request);
-            if (result)
+            if (result == 0)
             {
+                await _productApiClient.CategoryAssign(request.Id, new CategoryAssignRequest { Categories = request.Categories });
+                //await _productApiClient.CategoryAssign(result, new CategoryAssignRequest { Categories = request.Categories });
                 TempData["result"] = "Cập nhật sản phẩm thành công";
                 return RedirectToAction("Index");
             }
@@ -151,7 +158,11 @@ namespace eShopSolution.AdminApp.Controllers
         {
             var languageId = HttpContext.Session.GetString(SystemConstants.AppSettings.DefaultLanguageId);
 
-            var productObj = await _productApiClient.GetById(id, languageId);
+            ProductVm productObj = null;
+            if(id > 0)
+            {
+                productObj = await _productApiClient.GetById(id, languageId);
+            }    
             var categories = await _categoryApiClient.GetAll(languageId);
             var categoryAssignRequest = new CategoryAssignRequest();
             foreach (var role in categories)
@@ -160,7 +171,7 @@ namespace eShopSolution.AdminApp.Controllers
                 {
                     Id = role.Id.ToString(),
                     Name = role.Name,
-                    Selected = productObj.Categories.Contains(role.Name)
+                    Selected = productObj != null && productObj.Categories.Contains(role.Name)
                 });
             }
             return categoryAssignRequest;
