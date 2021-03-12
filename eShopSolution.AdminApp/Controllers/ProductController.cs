@@ -115,6 +115,8 @@ namespace eShopSolution.AdminApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
+            var roleAssignRequest = await GetCategoryAssignRequest(id);
+            
             var languageId = HttpContext.Session.GetString(SystemConstants.AppSettings.DefaultLanguageId);
 
             var product = await _productApiClient.GetById(id, languageId);
@@ -126,7 +128,8 @@ namespace eShopSolution.AdminApp.Controllers
                 Name = product.Name,
                 SeoAlias = product.SeoAlias,
                 SeoDescription = product.SeoDescription,
-                SeoTitle = product.SeoTitle
+                SeoTitle = product.SeoTitle,
+                Categories = roleAssignRequest.Categories
             };
             return View(editVm);
         }
@@ -139,8 +142,10 @@ namespace eShopSolution.AdminApp.Controllers
                 return View(request);
 
             var result = await _productApiClient.UpdateProduct(request);
-            if (result)
+            if (result == 0)
             {
+                await _productApiClient.CategoryAssign(request.Id, new CategoryAssignRequest { Categories = request.Categories });
+                //await _productApiClient.CategoryAssign(result, new CategoryAssignRequest { Categories = request.Categories });
                 TempData["result"] = "Cập nhật sản phẩm thành công";
                 return RedirectToAction("Index");
             }

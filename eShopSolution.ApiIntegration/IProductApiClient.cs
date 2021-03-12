@@ -13,7 +13,7 @@ namespace eShopSolution.ApiIntegration
 
         Task<int> CreateProduct(ProductCreateRequest request);
 
-        Task<bool> UpdateProduct(ProductUpdateRequest request);
+        Task<int> UpdateProduct(ProductUpdateRequest request);
 
         Task<ApiResult<bool>> CategoryAssign(int id, CategoryAssignRequest request);
 
@@ -24,5 +24,6 @@ namespace eShopSolution.ApiIntegration
         Task<List<ProductVm>> GetLatestProducts(string languageId, int take);
 
         Task<bool> DeleteProduct(int id);
+       
     }
 }

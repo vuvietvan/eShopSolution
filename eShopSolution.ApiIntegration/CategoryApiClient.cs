@@ -18,6 +18,16 @@ namespace eShopSolution.ApiIntegration
         {
         }
 
+        public Task<bool> CreateProduct(CategoryCreateRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> DeleteProduct(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<List<CategoryVm>> GetAll(string languageId)
         {
             return await GetListAsync<CategoryVm>("/api/categories?languageId=" + languageId);
@@ -26,6 +36,16 @@ namespace eShopSolution.ApiIntegration
         public async Task<CategoryVm> GetById(string languageId, int id)
         {
             return await GetAsync<CategoryVm>($"/api/categories/{id}/{languageId}");
+        }
+
+        public Task<CategoryVm> GetById(int id, string languageId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> UpdateProduct(CategoryUpdateRequest request)
+        {
+            throw new NotImplementedException();
         }
     }
 }
